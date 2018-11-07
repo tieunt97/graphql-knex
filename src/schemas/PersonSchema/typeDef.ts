@@ -6,7 +6,7 @@ export const typeDef = `
 
     extend type Mutation {
         createPerson(input: PersonInput): Person
-        updatePerson(id: ID!, input: PersonInput): Boolean
+        updatePerson(id: ID!, input: PersonInput): Person
     }
 
     input PersonInput {
