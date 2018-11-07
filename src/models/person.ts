@@ -47,7 +47,11 @@ class PersonM {
 
     updatePerson(id: number, input: object) {
         if (id) {
-            return Person.where({ id: id }).set(input).save(null, { method: 'update' });
+            return Person.where({ id: id }).set(input).save(null, { method: 'update' }).then(function (model) {
+                return Person.where({ id: id }).fetch({ withRelated: ['role'] }).then(function (model) {
+                    return model.toJSON();
+                });
+            });
         }
         return false;
     }
