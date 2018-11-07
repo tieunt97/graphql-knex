@@ -1,6 +1,11 @@
 import { merge } from 'lodash';
 
-import { 
+import {
+    typeDef as Person,
+    resolver as PersonResolver
+} from './PersonSchema';
+
+import {
     typeDef as Member,
     resolver as MemberResolver
 } from './MemberSchema';
@@ -13,6 +18,7 @@ import {
 import {
     typeDef as Role
 } from './RoleSchema';
+import { from } from 'zen-observable';
 
 const DefaultSchema = `
     type Query {
@@ -24,5 +30,5 @@ const DefaultSchema = `
     }
 `;
 
-export const typeDefs = [DefaultSchema, Member, Role, Admin];
-export const resolvers = merge(MemberResolver, AdminResolver);
+export const typeDefs = [DefaultSchema, Member, Role, Admin, Person];
+export const resolvers = merge(MemberResolver, AdminResolver, PersonResolver);
